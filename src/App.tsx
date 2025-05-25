@@ -19,6 +19,11 @@ export const App: React.FC = () => {
       .startsWith(appliedQuery.toLowerCase().replaceAll(' ', '')),
   );
 
+  const handleFocus = () => {
+    setFocus(true);
+    setTitle('No selected person');
+  };
+
   const timer = useRef(0);
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -37,6 +42,7 @@ export const App: React.FC = () => {
     setTitle(`${person.name} (${person.born} - ${person.died})`);
     setFocus(false);
     setQuery('');
+    setAppliedQuery('');
   };
 
   return (
@@ -55,7 +61,7 @@ export const App: React.FC = () => {
               data-cy="search-input"
               value={query}
               onChange={handleInputChange}
-              onFocus={() => setFocus(true)}
+              onFocus={handleFocus}
             />
           </div>
 
